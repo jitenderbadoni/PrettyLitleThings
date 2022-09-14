@@ -1,0 +1,2 @@
+export const LANDING_SCREEN = "LANDING_SCREEN";
+export const CART_DETAIL = "CART_DETAIL";
