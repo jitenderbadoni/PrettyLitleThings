@@ -48,6 +48,6 @@ export const fetchAllItems = () => {
         .then(data => {
           dispatch(allItemReceived(data));
         })
-        .catch(err => console.log("There is error caught : ", err));
+        .catch(err => {console.log("There is error caught : ", err); allItemReceived([])});
     };
   };

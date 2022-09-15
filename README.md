@@ -15,6 +15,12 @@ npm install
 npx expo start 
 ```
 
+## Run Unit Test Suits
+
+```bash
+npm run test
+```
+
 ![Screenshot1](assets/Screenshot1.jpeg)
 ![Screenshot2](assets/Screenshot1.jpeg)
 <video src='assets/RECORDING.MP4' width=180/>

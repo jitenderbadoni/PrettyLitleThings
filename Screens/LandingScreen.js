@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { fetchUserInfo } from "../Store/action";
 import { useDispatch, useSelector } from "react-redux";
 import { CART_DETAIL } from "../Helper/ROUTE_NAMES";
 import ProductCard from "../Components/ProductCard";
+import { LANDING_SCREEN } from "../Constants/Component.testids";
 
 const style = StyleSheet.create({
     loadingContainer: {
@@ -30,10 +31,15 @@ const style = StyleSheet.create({
 const LandingScreen = ({ navigation }) => {
     const dispatch = useDispatch();
     const { isLoading, productList } = useSelector(state => state);
+    const [showList, setShowList] = useState();
 
     useEffect(() => {
         dispatch(fetchUserInfo());
     }, [])
+
+    useEffect(() => {
+        setShowList(isLoading);
+    }, [isLoading])
     
     const _renderItem = (productItem) => {
         const { item } = productItem;
@@ -44,13 +50,13 @@ const LandingScreen = ({ navigation }) => {
     return (
         <>
         {
-            isLoading ? <View style={style.loadingContainer}><Text>{"Please wait..."}</Text></View>
+            !showList ? <View style={style.loadingContainer}><Text>{"Please wait..."}</Text></View>
             :
             <FlatList
                 data={productList}
                 keyExtractor={(item, index) => item.id + index}
                 renderItem={_renderItem}
-                ListFooterComponent={<View style={style.viewCartButtonContainer}><TouchableOpacity onPress={() => navigation.navigate(CART_DETAIL)} style={style.btnViewCart}><Text style={style.btnText}>View Cart</Text></TouchableOpacity></View>}
+                ListFooterComponent={<View style={style.viewCartButtonContainer}><TouchableOpacity testID={LANDING_SCREEN.VIEW_CART_BUTTON} onPress={() => navigation.navigate(CART_DETAIL)} style={style.btnViewCart}><Text style={style.btnText}>View Cart</Text></TouchableOpacity></View>}
             />
         }
         </>

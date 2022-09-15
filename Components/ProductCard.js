@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
 import { addItemInCart, removeItemFromCart } from '../Store/action';
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { PRODUCT_CARD } from "../Constants/Component.testids";
 const style = StyleSheet.create({
     listItemStyle: {
         paddingVertical: 20,
@@ -49,25 +49,25 @@ const List = ({ item, isCart }) => {
         </View>
         <View style={style.listItemContainer}>
                 <View style={{ flex: 1}}>
-                    <View><Text>{item.name}</Text></View>
+                    <View><Text testID={PRODUCT_CARD.PRODUCT_NAME}>{item.name}</Text></View>
                     <View style={style.itemContainer}>
                         <Text style={style.itemLabel}>Color:</Text>
-                        <Text>{item.colour}</Text>
+                        <Text testID={PRODUCT_CARD.PRODUCT_COLOR}>{item.colour}</Text>
                     </View>
                     <View style={style.itemContainer}>
                         <Text style={style.itemLabel}>Price:</Text>
-                        <Text>{item.price}</Text>
+                        <Text testID={PRODUCT_CARD.PRODUCT_PRICE}>{item.price}</Text>
                     </View>
                         <View style={{marginTop: 10}}>
                             <TouchableOpacity
                                 onPress={() => dispatch(actionMethod(item))}
                                 style={[style.btnStyle, { backgroundColor: isCart ? "#b0687a" : "#5c8057" }]}>
-                                <Text style={style.btnText}>{ !isCart ? 'Add to cart' : 'Remove from Cart'}</Text>
+                                <Text testID={PRODUCT_CARD.CART_BUTTON} style={style.btnText}>{ !isCart ? 'Add to cart' : 'Remove from Cart'}</Text>
                             </TouchableOpacity>
                         </View>
                 </View>
                 <View style={style.imageContainer}>
-                    <Image resizeMode="contain" source={{ uri: item.img}} style={style.productImage}/>
+                    <Image testID={PRODUCT_CARD.PRODUCT_IMAGE} resizeMode="contain" source={{ uri: item.img}} style={style.productImage}/>
                 </View>
             </View>
         </View>
