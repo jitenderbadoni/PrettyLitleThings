@@ -16,3 +16,6 @@ jobs:
           
       - name: Install
         run: npm install --legacy-peer-deps
+        
+      - name: Run Test Cases
+        run: npm run test
