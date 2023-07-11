@@ -1,0 +1,13 @@
+name: Manual Workflow
+on:
+  workflow_dispatch:
+jobs:  
+  react-native-build:    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Custom build
+        uses: bamachoub/react-native-build-action@v1.0.0        
+        with:          
+          platform: android          
+          type: assemble          
+          keystore-name: staging
