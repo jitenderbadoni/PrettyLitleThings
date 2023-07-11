@@ -5,9 +5,14 @@ jobs:
   react-native-build:    
     runs-on: ubuntu-latest
     steps:
-      - name: Custom build
-        uses: bamachoub/react-native-build-action@v1.0.0        
-        with:          
-          platform: android          
-          type: assemble          
-          keystore-name: staging
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.x
+          cache: npm
+          
+      - name: Install
+        run: npm ci
